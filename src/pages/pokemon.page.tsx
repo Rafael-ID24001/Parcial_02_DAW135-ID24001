@@ -4,6 +4,7 @@ import { PokeApiService } from "../services/pokemon.service";
 import { AxiosAdapter } from "../common/axios.adapter";
 import type { PokemonInfo } from "../interfaces/pokemon-list.interface";
 import { sleep } from "../utils/utils";
+import { LoadingIndicator } from "../components/loading-indicator.component";
 
 const pokeApiService = new PokeApiService(new AxiosAdapter());
 
@@ -30,7 +31,7 @@ export const PokemonPage = () => {
     }, []);
 
     if (loading) {
-        return <p className="text-center mt-4">Cargando Pokémon...</p>;
+        return <LoadingIndicator messageLoader="Cargando Pokémon..."/>
     }
 
     return (
