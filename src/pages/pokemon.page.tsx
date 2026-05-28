@@ -49,11 +49,14 @@ export const PokemonPage = () => {
 
     return (
         <>
-            <div className="bg-white">
-                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <h2 className="sr-only">Pokémon</h2>
-
-                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+    
+             <div className="bg-white py-24 sm:py-32">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div className="mx-auto max-w-2xl lg:text-center">
+                        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-balance">Pokémon</h1>
+                    </div>
+                    <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                         {pokemonList.map((pokemon) => (
                             <BasicCard key={pokemon.id} title={pokemon.name} id={pokemon.id} />
                         ))}
@@ -67,6 +70,7 @@ export const PokemonPage = () => {
                         hasPrevious={currentOffset > 0}
                         hasNext={paginator.to! < paginator.total!}
                     />
+                    </div>
                 </div>
             </div>
         </>
