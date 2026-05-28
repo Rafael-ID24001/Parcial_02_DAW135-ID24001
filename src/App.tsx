@@ -1,16 +1,8 @@
 import './App.css'
+import { PokemonPage } from "./pages/pokemon.page"
 
 function App() {
-
-  return (
-    <>
-      <div>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-      </div>
-    </>
-  )
+  return <PokemonPage />
 }
 
 export default App
