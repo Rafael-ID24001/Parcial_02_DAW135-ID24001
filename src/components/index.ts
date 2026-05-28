@@ -1,1 +1,3 @@
 export * from './basic-card.component';
+export * from './loading-indicator.component';
+export * from './paginator.component';

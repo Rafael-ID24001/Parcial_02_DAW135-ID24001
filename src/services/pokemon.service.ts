@@ -1,5 +1,5 @@
 import { AxiosAdapter } from "../common/axios.adapter";
-import type { PokemonInfo, PokemonList, PokemonApi } from "../interfaces/pokemon-list.interface";
+import type { PokemonList } from "../interfaces/pokemon-list.interface";
 
 
 export class PokeApiService {
@@ -12,19 +12,12 @@ export class PokeApiService {
         this.httpClient = httpClient;
     }
 
-    async getPokemonList(limit: number = 5, offset: number = 0): Promise<PokemonInfo[]> {
-        try {
-            const pokeApiList = await this.httpClient.get<PokemonList>(`${this.POKE_API_BASE_URL}?limit=${limit}&offset=${offset}`);
-            const pokeList = pokeApiList.results.map((p): PokemonApi => {
-                const segmentsUrl = p.url.split('/');
-                return {
-                    id: +segmentsUrl[segmentsUrl.length - 2],
-                    name: p.name,
-                    url: p.url
-                } as PokemonInfo
-            }) as PokemonInfo[]
+    async getPokemonList(limit: number = 5, offset: number = 0): Promise<PokemonList> {
 
-            return pokeList;
+        try {
+
+            const pokeApiList = await this.httpClient.get<PokemonList>(`${this.POKE_API_BASE_URL}?limit=${limit}&offset=${offset}`);
+            return pokeApiList;
 
         } catch (error: unknown) {
             if (error instanceof Error) {
@@ -33,7 +26,7 @@ export class PokeApiService {
                 console.error("Error inesperado:", error);
             }
 
-            return []
+            return {} as PokemonList;
         } finally {
         }
     }
