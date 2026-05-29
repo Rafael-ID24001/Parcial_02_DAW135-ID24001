@@ -1,4 +1,5 @@
 import { AxiosAdapter } from "../common/axios.adapter";
+import type { PokemonDetails } from "../interfaces";
 import type { PokemonList } from "../interfaces/pokemon-list.interface";
 
 
@@ -27,6 +28,23 @@ export class PokeApiService {
             }
 
             return {} as PokemonList;
+        } finally {
+        }
+    }
+
+    async getPokemonInfo(id: number): Promise<PokemonDetails> {
+        try {
+            const pokeApiList = await this.httpClient.get<PokemonDetails>(`${this.POKE_API_BASE_URL}/${id}/`);
+            return pokeApiList;
+
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                console.error("Error:", error.message);
+            } else {
+                console.error("Error inesperado:", error);
+            }
+
+            return {} as PokemonDetails;
         } finally {
         }
     }
