@@ -5,7 +5,7 @@ import type { PokemonList } from "../interfaces/pokemon-list.interface";
 
 export class PokeApiService {
 
-    POKE_API_BASE_URL: string = 'https://pokeapi.co/api/v2/pokemon';
+    POKE_API_BASE_URL: string = 'https://pokeapi.co/api/v22/pokemon';
 
     private readonly httpClient: AxiosAdapter;
 
@@ -14,39 +14,13 @@ export class PokeApiService {
     }
 
     async getPokemonList(limit: number = 5, offset: number = 0): Promise<PokemonList> {
-
-        try {
-
-            const pokeApiList = await this.httpClient.get<PokemonList>(`${this.POKE_API_BASE_URL}?limit=${limit}&offset=${offset}`);
-            return pokeApiList;
-
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                console.error("Error:", error.message);
-            } else {
-                console.error("Error inesperado:", error);
-            }
-
-            return {} as PokemonList;
-        } finally {
-        }
+        const response = await this.httpClient.get<PokemonList>(`${this.POKE_API_BASE_URL}?limit=${limit}&offset=${offset}`);
+        return response;
     }
 
     async getPokemonInfo(id: number): Promise<PokemonDetails> {
-        try {
-            const pokeApiList = await this.httpClient.get<PokemonDetails>(`${this.POKE_API_BASE_URL}/${id}/`);
-            return pokeApiList;
-
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                console.error("Error:", error.message);
-            } else {
-                console.error("Error inesperado:", error);
-            }
-
-            return {} as PokemonDetails;
-        } finally {
-        }
+        const response = await this.httpClient.get<PokemonDetails>(`${this.POKE_API_BASE_URL}/${id}/`);
+        return response;
     }
 
 
