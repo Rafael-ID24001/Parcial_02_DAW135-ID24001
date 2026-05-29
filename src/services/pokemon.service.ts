@@ -5,7 +5,7 @@ import type { PokemonList } from "../interfaces/pokemon-list.interface";
 
 export class PokeApiService {
 
-    POKE_API_BASE_URL: string = 'https://pokeapi.co/api/v22/pokemon';
+    POKE_API_BASE_URL: string = 'https://pokeapi.co/api/v2/pokemon';
 
     private readonly httpClient: AxiosAdapter;
 
